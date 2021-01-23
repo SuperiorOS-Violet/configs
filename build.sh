@@ -2,22 +2,22 @@
 
 # User Defined Stuff
 
-folder="/home/violet/rros"
-rom_name=*.zip
+folder="/home2/sos"
+rom_name=*OFFICIAL*.zip
 #gapps_command="WITH_GAPPS"
 #with_gapps=""
 build_type="userdebug"
 device_codename="violet"
 use_brunch="bacon"
 OUT_PATH="$folder/out/target/product/${device_codename}"
-lunch="rr"
+lunch="superior"
 user="Joker"
 tg_username="@Joker_V2_0"
 use_ccache=yes
 stopped=0
 finish=0
 BUILDFILE="buildlog"_$START.txt
-make_clean="no"
+make_clean="installclean"
 
 # Rom being built
 
@@ -31,10 +31,9 @@ chaos="/home/sax_build/dump/configs/chaos_group.conf"
 iron_testing="/home/sax_build/dump/configs/testing_group.conf"
 octavi="/home/sax_build/dump/configs/octavi.conf"
 sub1="/home/sax_build/dump/configs/sub1.conf"
-sub2="/home/sax_build/dump/configs/sub2.conf"
 sub_2_test="/home/sax_build/dump/configs/sub-2-test.conf"
 channel="/home/sax_build/dump/configs/channel.conf"
-nicola="/home/sax_build/dump/configs/jenni.conf"
+nicola="/home/sax_build/dump/configs/nicola.conf"
 
 # Folder specifity
 
@@ -53,7 +52,6 @@ EOT
   if [ $finish = 0 ] ; then
     telegram-send --format html "${privstart}" --config ${priv_to_me} --disable-web-page-preview
     telegram-send --format html "${privstart}" --config ${channel} --disable-web-page-preview
-    telegram-send --format html "${privstart}" --config ${nicola} --disable-web-page-preview
   fi
 }
 
@@ -72,7 +70,6 @@ EOT
 
 telegram-send --format html "${msg}" --config ${priv_to_me} --disable-web-page-preview
 telegram-send --format html "${msg}" --config ${channel} --disable-web-page-preview
-telegram-send --format html "${msg}" --config ${nicola} --disable-web-page-preview
 
 # Colors makes things beautiful
 
@@ -95,6 +92,7 @@ ccache -M 75G
 # Time to build
 
 source build/envsetup.sh
+export SUPERIOR_OFFICIAL=true
 
 if [ "$with_gapps" = "yes" ];
 then
@@ -176,6 +174,5 @@ fi
 if [ $stopped = 0 ] ; then
 	telegram-send --format html "$priv" --config ${priv_to_me} --disable-web-page-preview
 	telegram-send --format html "$priv" --config ${channel} --disable-web-page-preview
-	telegram-send --format html "$priv" --config ${nicola} --disable-web-page-preview
 fi
 finish=1
